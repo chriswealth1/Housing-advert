@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style1.css">
+    <script src="https://kit.fontawesome.com/8db6c2d0c6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="hero">
+    <div class="row">
+        <div class="col-1">
+            <img  src="../DE housing/logo.png" >
+            <div class="title">
+            <h1>Add plants to <br> your living space</h1>
+            <p>Plants are an inexpensive means to accessorizing your space and <br> adding color and texture.</p>
+            <button>LEARN MORE</button>
+            </div>
+        </div>
+        <div class="col-2">
+            <img id="images" src="/DE housing/luxury (1).jpg" alt="">
+            <div class="gallery-details">
+                <h3>Where can I find ideas for small rooms?</h3>
+                <hr>
+                <p>They can absorb pollutants and remove harmful gases from the air.No home<br>
+                    should be without these wonderful greens! Designing small rooms come with
+                    a<br>completely different challenge.
+                </p>
+                <div class="slider">
+                    <i class="fa fa-arrow-left" aria-hidden="true" id="prevBtn"></i>
+                    <i class="fa fa-arrow-right" aria-hidden="true"  id="nextBtn"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+                let Image = document.getElementById('images') ;
+                let Prev = document.getElementById('prevBtn')  ;
+                let Next = document.getElementById('nextBtn') 
+                 const TitleHeader = document.querySelector('h1') ;
+                 const SliderHeader = [ 
+                    'Add plants to your personal living space',
+                      'Luxury living spaces deserve bold plants.', 
+                      'Adding tall fiddle-leaf figs or broad-leaf monstera plants.',
+                     'Maximize your vertical space by hanging English Ivy or Pothos from shelves. ',
+                    'Incorporate low-maintenance succulents and snake plants on window sills. '
+                    ];
+                 // Select the paragraph element inside gallery-details to update text
+                const DescriptionText = document.querySelector('.gallery-details p')
+                 // 2. Matching array of text descriptions
+    const SlideTexts = [
+        'They can absorb pollutants and remove harmful gases from the air. No home should be without these wonderful greens! Designing small rooms come with a completely different challenge.',
+        'Luxury living spaces deserve bold plants. Adding tall fiddle-leaf figs or broad-leaf monstera plants elevates high ceilings and brings natural warmth to modern architecture.',
+        'Maximize your vertical space by hanging English Ivy or Pothos from shelves. This draws the eye upward, making compact apartments feel significantly larger and fresher.',
+        'Incorporate low-maintenance succulents and snake plants on window sills. They thrive in minimal spaces and provide clean geometric patterns that complement minimalist decor.'
+    ];
+                const SlideImages = new Array (
+                    '../DE housing/luxury (1).jpg',
+                    '../DE housing/luxury (2).jpg',
+                    '../DE housing/luxury (3).jpg',
+                    '../DE housing/luxury (4).jpg',
+                )
+                let  i = 0;
+
+                // Function to handle changing the content and updating button styles
+    function updateSlider() {
+        // Update image and text
+        Image.src = SlideImages[i];
+        DescriptionText.textContent = SlideTexts[i];
+        TitleHeader.textContent = SliderHeader[i]
+
+
+        // Manage 'Previous' button opacity
+        if (i === 0) {
+            Prev.classList.add('disabled');
+        } else {
+            Prev.classList.remove('disabled');
+        }
+
+           // Manage 'Next' button opacity
+        if (i === SlideImages.length-1 ) {
+            Next.classList.add('disabled');
+        } else {
+            Next.classList.remove('disabled');
+        }
+    }
+
+
+                Next.onclick = function (){
+                 if(i < 3){
+                     Image.src = SlideImages[i+1];
+                     i++;
+                     updateSlider()
+                }  
+                }
+
+                Prev.onclick = function (){
+                 if(i > 0){
+                     Image.src = SlideImages[i-1];
+                     i--;
+                     updateSlider()
+                }  
+                }
+                 updateSlider()
+    </script>
+</body>
+</html>
